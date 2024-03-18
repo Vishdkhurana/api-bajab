@@ -1,0 +1,33 @@
+const axios = require('axios');
+
+const apiEndPoint2 = 'https://customer-analytics-34146.my.salesforce-sites.com/services/apexrest/buyStocks';
+const headers = {
+  'content-type': 'application/json',
+  'bfhl-auth': '2110991548'
+};
+
+const investInBajajFinserv = async (accountNumber, currentPrice) => {
+  try {
+    const response = await axios.post(apiEndPoint2, {
+      company: 'Bajaj Finserv',
+      currentPrice: currentPrice,
+      accountNumber: accountNumber,
+      githubRepoLink: 'https://github.com/Vishdkhurana/api-bajab'
+    }, {
+      headers: headers
+    });
+
+    if (response.status === 200) {
+      console.log('Invested in Bajaj Finserv successfully');
+      console.log(response.data);
+    } else {
+      console.log('Failed to invest in Bajaj Finserv');
+      console.log(response.status);
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+
+investInBajajFinserv('your-account-number', 1234.56);
