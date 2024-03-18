@@ -1,0 +1,29 @@
+const axios = require('axios');
+
+async function createAccount(apiend, data) {
+  try {
+    const response = await axios.post(apiend, data);
+
+    if (response.status === 200) {
+      console.log('account created successfully');
+      console.log(response.data);
+    } else {
+      console.log('account not created');
+      console.log(response.status);
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+const details = {
+  name: 'vishd khurana',
+  email: 'vishd1548.be21@chitkara.edu.in',
+  rollNumber: 2110991548,
+  phone: 9588114726,
+};
+
+
+const apiend = 'https://your-api-endpoint.com/services/apexrest/createAccount';
+
+createAccount(apiend, details);
